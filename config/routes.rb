@@ -8,4 +8,4 @@ Rails.application.routes.draw do
   end
 end
 
-# 
+# link that is incoming and to the actual action
