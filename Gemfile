@@ -47,3 +47,4 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker'
+gem 'clearbit'
