@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :requires_login, only: [:index, :show, :users_subscriptions]
+  before_action :requires_login, only: [:index, :show, :users_subscriptions, :add_subscription, :delete_subscription]
 
   def index
     @users = User.all
@@ -32,12 +32,26 @@ class Api::V1::UsersController < ApplicationController
 
   def users_subscriptions
     @user = User.find_by(id: params[:user_id])
-
     render json: @user.subscriptions
   end
 
+  def add_subscription
+    @user = User.find_by(id: params[:user_id])
+    @subscription = Subscription.find_by(id: params[:subscription_id])
+  
+    @user.subscriptions << @subscription
+  end
+
+  def delete_subscription
+    @user = User.find_by(id: params[:user_id])
+    @subscription = Subscription.find_by(id: params[:subscription_id])
+  
+    @user.subscriptions.delete(@subscription)
+  end
+
   private
+
   def user_params
-    params.permit(:username,:password)
+    params.permit(:username, :password)
   end
 end

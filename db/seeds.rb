@@ -2,11 +2,11 @@ require 'json'
 require 'byebug'
 require 'clearbit'
 
-api_key = ENV['API_KEY']
+subscription_api_key = ENV['SUBSCRIPTION_API_KEY']
 project_key = ENV['PROJECT_KEY']
 project_token = ENV['PROJECT_TOKEN']
 
-Clearbit.key = api_key
+Clearbit.key = subscription_api_key
 
 Subscription.where(id: 2..5000).destroy_all()
 
@@ -53,8 +53,6 @@ company_array = info.split("\n")
 company_array.map! do |title|
   title.gsub(" ", "")
 end
-
-# RapidAPI.config(project: project_key, token: project_token)
 
 company_array.each do |company_url| 
   company = Clearbit::Enrichment::Company.find(domain: company_url)

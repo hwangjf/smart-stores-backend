@@ -11,14 +11,6 @@ class Api::V1::SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: params["username"])
-    # secret_key = secret_key()
-
-    # IMPORTANT: set nil as password parameter
-    # token = JWT.encode payload, secret_key, 'HS256'
-
-    # puts token
-
-    # puts 'login'
     
     if (@user && @user.authenticate(params["password"]))
       # payload = { name: params["username"], id: @user.id }
