@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :users do
-        get 'subscriptions', to: 'users#users_subscriptions'
-        post 'subscriptions/:subscription_id', to: 'users#add_subscription'
-        delete 'subscriptions/:subscription_id', to: 'users#delete_subscription'
-      end
+      resources :users
       resources :sessions
       resources :subscriptions
+      get 'users/:id/subscriptions', to: 'usersubscriptions#users_subscriptions'
+      post 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#add_subscription'
+      delete 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#delete_subscription'
     end
   end
 end
