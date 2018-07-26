@@ -1,5 +1,6 @@
 class Api::V1::UsersubscriptionsController < ApplicationController
-  # before_action :requires_login, only: [:users_subscriptions, :add_subscription, :delete_subscription]
+  before_action :requires_login
+  # , only: [:users_subscriptions, :add_subscription, :delete_subscription]
   
   def users_subscriptions
     @user = User.find_by(id: params[:id])
@@ -10,7 +11,10 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     @user = User.find_by(id: params[:id])
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
-    @user.subscriptions << @subscription
+    if !@user.subscriptions.include?(@subscription)
+      @user.subscriptions << @subscription
+    end
+    render json: @user.subscriptions
   end
 
   def delete_subscription
@@ -18,6 +22,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
     @user.subscriptions.delete(@subscription)
+    render json: @user.subscriptions
   end
 
   private

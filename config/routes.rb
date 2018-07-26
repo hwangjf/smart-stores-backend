@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'users/:id/subscriptions', to: 'usersubscriptions#users_subscriptions'
       post 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#add_subscription'
       delete 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#delete_subscription'
+      get 'refresh', to: 'sessions#refresh'
     end
   end
 end
