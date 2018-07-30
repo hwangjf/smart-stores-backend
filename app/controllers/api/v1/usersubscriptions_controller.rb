@@ -14,7 +14,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     if !@user.subscriptions.include?(@subscription)
       @user.subscriptions << @subscription
     end
-    render json: @user.subscriptions
+    render json: @subscription
   end
 
   def delete_subscription
@@ -22,7 +22,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
     @user.subscriptions.delete(@subscription)
-    render json: @user.subscriptions
+    render json: @subscription
   end
 
   private

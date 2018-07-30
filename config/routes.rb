@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#add_subscription'
       delete 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#delete_subscription'
       get 'refresh', to: 'sessions#refresh'
+      get 'news/search/:term/:pg', to: 'news#get_news'
     end
   end
 end

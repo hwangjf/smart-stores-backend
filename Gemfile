@@ -49,3 +49,4 @@ gem 'jwt'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker'
 gem 'clearbit'
+gem 'news-api'

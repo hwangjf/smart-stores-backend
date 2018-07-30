@@ -1,5 +1,3 @@
-require 'json'
-require 'byebug'
 require 'clearbit'
 
 subscription_api_key = ENV['SUBSCRIPTION_API_KEY']
