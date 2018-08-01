@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       delete 'users/:id/subscriptions/:subscription_id', to: 'usersubscriptions#delete_subscription'
       get 'refresh', to: 'sessions#refresh'
       get 'news/search/:term/:pg', to: 'news#get_news'
+      post 'users/:id/subscriptions/:subscription_id/date', to: 'usersubscriptions#set_user_subscription_date'
+      post 'users/:id/subscriptions/:subscription_id/cost', to: 'usersubscriptions#set_user_subscription_cost'
     end
   end
 end

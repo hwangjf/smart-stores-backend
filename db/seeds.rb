@@ -1,12 +1,8 @@
 require 'clearbit'
 
 subscription_api_key = ENV['SUBSCRIPTION_API_KEY']
-project_key = ENV['PROJECT_KEY']
-project_token = ENV['PROJECT_TOKEN']
 
 Clearbit.key = subscription_api_key
-
-Subscription.where(id: 2..5000).destroy_all()
 
 info = "AtlasCoffeeClub.com
 BarkBox.com
