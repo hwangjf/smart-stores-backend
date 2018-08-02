@@ -1,15 +1,10 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :requires_login, only: [:index, :show]
+  before_action :requires_login, only: [:index]
 
   def index
     @users = User.all
     render json: @users
   end
-
-  # def show
-  #   @user = User.find_by(id: params[:id])
-  #   render json: @user
-  # end
 
   def create
     @user = User.new
@@ -35,4 +30,5 @@ class Api::V1::UsersController < ApplicationController
   def user_params
     params.permit(:username, :password)
   end
+  
 end

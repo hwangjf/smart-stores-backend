@@ -7,7 +7,6 @@ class Api::V1::NewsController < ApplicationController
   end
   
   def get_news
-
     url = ("https://newsapi.org/v2/everything?"\
           "q=#{params[:term]}&"\
           "from=2018-01-01&"\
@@ -17,18 +16,14 @@ class Api::V1::NewsController < ApplicationController
           "apiKey=#{news_api_key()}")
     
     req = open(url)
-    
     response_body = req.read
+    
     render json: response_body
-
   end
 
   def create
   end
 
-  private
-  # def subscriptions_params
-  # end
 end
 
 

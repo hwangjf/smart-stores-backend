@@ -1,20 +1,31 @@
 class Api::V1::UsersubscriptionsController < ApplicationController
   before_action :requires_login
-  
+
+  def get_user_subscription_date
+    @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
+
+    render json: @usersubscription
+  end
+
   def set_user_subscription_date
     @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
     date = JSON.parse(request.body.string)["date"]
     @usersubscription.update(date: date)
+
+    render json: @usersubscription
   end
 
   def set_user_subscription_cost
     @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
     cost = JSON.parse(request.body.string)["cost"]
     @usersubscription.update(cost: cost)
+
+    render json: @usersubscription
   end
 
   def users_subscriptions
     @user = User.find_by(id: params[:id])
+
     render json: @user.subscriptions
   end
 
@@ -25,6 +36,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     if !@user.subscriptions.include?(@subscription)
       @user.subscriptions << @subscription
     end
+    
     render json: @subscription
   end
 
@@ -33,6 +45,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
     @user.subscriptions.delete(@subscription)
+    
     render json: @subscription
   end
 end

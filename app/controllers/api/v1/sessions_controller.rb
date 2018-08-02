@@ -15,7 +15,6 @@ class Api::V1::SessionsController < ApplicationController
     @user = User.find_by(username: params["username"])
     
     if (@user && @user.authenticate(params["password"]))
-      # payload = { name: params["username"], id: @user.id }
 
       render json: {
         username: @user.username,
@@ -24,7 +23,7 @@ class Api::V1::SessionsController < ApplicationController
       }
     else
       render json: {
-        errors: "Those credentials don't match anything we have in our database"
+        errors: "user name or password is incorrect"
       }, status: :unauthorized
     end
   end
