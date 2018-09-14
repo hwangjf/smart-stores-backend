@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'uri'
 
 class Api::V1::NewsController < ApplicationController
   
@@ -8,13 +9,14 @@ class Api::V1::NewsController < ApplicationController
   
   def get_news
     url = ("https://newsapi.org/v2/everything?"\
-          "q=#{params[:term]}&"\
-          "from=2018-01-01&"\
+          "q=#{URI.encode(params[:term])}&"\
           "sortBy=relevancy&"\
           "language=en&"\
           "page=#{params[:pg]}&"\
           "apiKey=#{news_api_key()}")
-    
+
+    puts url
+
     req = open(url)
     response_body = req.read
     
