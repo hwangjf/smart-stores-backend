@@ -10,7 +10,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
   def set_user_subscription_date
     @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
     date = JSON.parse(request.body.string)["date"]
-    @usersubscription.update(date: date)
+    @usersubscription.update_columns(date: date)
 
     render json: @usersubscription
   end
@@ -18,7 +18,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
   def set_user_subscription_cost
     @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
     cost = JSON.parse(request.body.string)["cost"]
-    @usersubscription.update(cost: cost)
+    @usersubscription.update_columns(cost: cost)
 
     render json: @usersubscription
   end
@@ -48,6 +48,13 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     
     render json: @subscription
   end
+
+  private
+
+  def user_params
+    params.permit(:id, :subscription_id)
+  end
+  
 end
 
 # User.find(id: params[:id]).subscriptions.delete(id=146)
