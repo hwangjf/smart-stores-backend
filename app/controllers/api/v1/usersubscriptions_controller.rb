@@ -1,36 +1,36 @@
 class Api::V1::UsersubscriptionsController < ApplicationController
-  before_action :requires_login
+  # before_action :requires_login
 
-  def get_user_subscription_date
-    @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
+  def get_user_subscription_info
+    @usersubscription = UserSubscription.find_by(user_id: params[:user_id], subscription_id: params[:subscription_id])
 
-    render json: @usersubscription
+    render json: @usersubscription.attributes
   end
 
   def set_user_subscription_date
-    @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
+    @usersubscription = UserSubscription.find_by(user_id: params[:user_id], subscription_id: params[:subscription_id])
     date = JSON.parse(request.body.string)["date"]
     @usersubscription.update_columns(date: date)
 
-    render json: @usersubscription
+    render json: @usersubscription.attributes
   end
 
   def set_user_subscription_cost
-    @usersubscription = UserSubscription.find_by(user_id: params[:id], subscription_id: params[:subscription_id])
+    @usersubscription = UserSubscription.find_by(user_id: params[:user_id], subscription_id: params[:subscription_id])
     cost = JSON.parse(request.body.string)["cost"]
     @usersubscription.update_columns(cost: cost)
 
-    render json: @usersubscription
+    render json: @usersubscription.attributes
   end
 
   def users_subscriptions
-    @user = User.find_by(id: params[:id])
+    @usersubscriptions = UserSubscription.find_by(user_id: params[:user_id])
 
-    render json: @user.subscriptions
+    render json: @usersubscriptions
   end
 
   def add_subscription
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
     if !@user.subscriptions.include?(@subscription)
@@ -41,7 +41,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
   end
 
   def delete_subscription
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
     @user.subscriptions.delete(@subscription)
@@ -52,9 +52,9 @@ class Api::V1::UsersubscriptionsController < ApplicationController
   private
 
   def user_params
-    params.permit(:id, :subscription_id)
+    params.permit(:user_id, :subscription_id)
   end
   
 end
 
-# User.find(id: params[:id]).subscriptions.delete(id=146)
+# User.find(id: params[:user_id]).subscriptions.delete(id=146)

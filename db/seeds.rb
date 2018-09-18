@@ -24,7 +24,6 @@ FarmtoPeople.com
 FiveFourClub.com
 GeekFuel.com
 Glossybox.com
-Graze.com
 HelloFresh.com
 HonestCompany.com
 Ipsy.com
@@ -34,13 +33,19 @@ LoveGoodly.com
 LoveWithFood.com
 MyBookBox.com
 NatureBox.com
-NerdBlock.com
 Plated.com
+Scribbler.com
 PupJoy.com
 SockPanda.com
 StitchFix.com
+JustFab.com
 TrunkClub.com
-Urthbox.com"
+Nicelynoted.com
+Urthbox.com
+Netflix.com
+Hulu.com
+InstaCart.com
+Spotify.com"
 
 company_array = info.split("\n")
 

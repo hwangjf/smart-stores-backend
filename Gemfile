@@ -50,3 +50,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker'
 gem 'clearbit'
 gem 'news-api'
+gem 'active_model_serializers'
