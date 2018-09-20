@@ -36,17 +36,20 @@ class Api::V1::UsersubscriptionsController < ApplicationController
     if !@user.subscriptions.include?(@subscription)
       @user.subscriptions << @subscription
     end
-    
-    render json: @subscription
+
+    @usersubscription = UserSubscription.find_by(user_id: params[:user_id], subscription_id: params[:subscription_id])
+  
+    render json: @usersubscription
   end
 
   def delete_subscription
+    @usersubscription = UserSubscription.find_by(user_id: params[:user_id], subscription_id: params[:subscription_id])
     @user = User.find_by(id: params[:user_id])
     @subscription = Subscription.find_by(id: params[:subscription_id])
   
     @user.subscriptions.delete(@subscription)
     
-    render json: @subscription
+    render json: @usersubscription
   end
 
   private
