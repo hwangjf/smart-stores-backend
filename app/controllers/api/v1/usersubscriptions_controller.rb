@@ -24,7 +24,7 @@ class Api::V1::UsersubscriptionsController < ApplicationController
   end
 
   def users_subscriptions
-    @usersubscriptions = UserSubscription.find_by(user_id: params[:user_id])
+    @usersubscriptions = UserSubscription.where(user_id: params[:user_id])
 
     render json: @usersubscriptions
   end
