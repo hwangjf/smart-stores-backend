@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :sessions
-      resources :subscriptions
+      get 'subscriptions', to: 'subscriptions#index'
+      post 'subscriptions', to: 'subscriptions#create'
       get 'users/:user_id/subscriptions', to: 'usersubscriptions#users_subscriptions'
       post 'users/:user_id/subscriptions/:subscription_id', to: 'usersubscriptions#add_subscription'
       delete 'users/:user_id/subscriptions/:subscription_id', to: 'usersubscriptions#delete_subscription'

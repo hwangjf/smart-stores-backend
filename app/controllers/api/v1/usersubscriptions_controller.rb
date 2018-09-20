@@ -1,5 +1,5 @@
 class Api::V1::UsersubscriptionsController < ApplicationController
-  # before_action :requires_login
+  before_action :requires_login
 
   def get_user_subscription_info
     @usersubscription = UserSubscription.find_by(user_id: params[:user_id], subscription_id: params[:subscription_id])
